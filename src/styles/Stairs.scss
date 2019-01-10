@@ -1,0 +1,65 @@
+
+$total-lines: 5;
+$left-offset: 4.35rem;
+$clip-height: 7.5rem;
+$line-height: $clip-height - 0.6rem;
+
+
+.words {
+    display: flex;
+    background-color: #5138BE;
+    height: 100vh;
+    width: 100%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    &__list {
+        font-family: 'Space Grotesk Bold';
+        font-size: 10em;
+        letter-spacing: -2px;
+        text-transform: uppercase;
+        transform: translateX(-120px);
+        -webkit-font-smoothing: antialiased;
+        -webkit-font-kerning: normal;
+        -webkit-text-size-adjust: 100%;
+
+        &:hover {
+            .words__item--text{
+                transform: translate3d(0, -($clip-height), 0);
+            }
+        }
+    }
+
+    &__item {
+        height: $clip-height;
+        overflow: hidden;
+        position: relative;
+
+        &--text {
+            height: $clip-height;
+            line-height: $line-height;
+            padding: 0 10px;
+            transition: all 0.4s ease-in-out;
+            transform: translate3d(0, 0, 0);
+            vertical-align: top;
+            white-space: nowrap;
+            color: #FFFFFF;
+            font-size: 1em;
+        }
+        
+        &:nth-child(odd) {
+            transform: skew(60deg, -30deg) scaleY(.66667);
+        }
+        &:nth-child(even) {
+            transform: skew(0deg, -30deg) scaleY(1.33333);
+        }
+        
+        @for $i from 1 through $total-lines+1 {
+            &:nth-child(#{$i}) {
+            left: $left-offset * $i;
+            }
+        }
+    }
+}

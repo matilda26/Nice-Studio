@@ -25,3 +25,10 @@ body > div {
   position: absolute;
   top: 0;
 }
+
+p, ul {
+  margin-block-start: 0 !important;
+  margin-block-end: 0 !important;
+  padding-inline-start: 0 !important;
+}
+
