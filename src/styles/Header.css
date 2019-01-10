@@ -1,0 +1,12 @@
+.header__links {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}
+
+.header__link {
+    color: white;
+    text-decoration: none;
+    font-family: 'Space Grotesk Regular';
+    margin-right: 10px;
+}

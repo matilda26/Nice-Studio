@@ -1,0 +1,90 @@
+
+$background-color: red;
+
+// Some settings
+$shadow-scale: 1.1;
+$letter-spacing: (300em/1000);
+$initial-skew: -40deg;
+$hover-skew:  -10deg;
+$animation-duration: .3s;
+
+// Automatic settings
+$shadow-initial-skew: (($initial-skew / 2) * -1);
+$shadow-hover-skew: (($hover-skew / 2) * -1);
+
+// Styles
+p {
+  color: white;
+  font-size: 10rem;
+
+  span {
+    display: inline-block;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 500;
+    -webkit-font-smoothing: antialiased;
+    
+    &::before,
+    &::after {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform-origin: left top;
+        transition: all ease-out $animation-duration;
+        content: attr(data-text);
+    }
+
+    &::before {
+      z-index: 1;
+      color: rgba(0, 0, 0, .2);
+      transform: scale($shadow-scale, 1) skew(0deg, $shadow-initial-skew);
+    }
+
+    &::after {
+      z-index: 2;
+      color: $background-color;
+      text-shadow: -1px 0 1px $background-color, 1px 0 1px rgba(0, 0, 0, .6);
+      transform: rotateY($initial-skew);
+    }
+
+    &:hover {
+      &::before {
+        transform: scale(1) skew(0deg);
+      }
+
+      &::after {
+        transform: rotateY(0);
+        text-shadow: -1px 0 1px $background-color, 1px 0 1px rgba(0, 0, 0, 0);
+      }
+    }
+
+    & + span {
+      // margin-left: $letter-spacing;
+    }
+  }
+}
+p {
+  span::before,
+  span::after {
+    display: block;
+  }
+}
+
+.cutout__wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// html,
+// body {
+//   margin: 0;
+//   padding: 0;
+//   height: 100%;
+// }
+
+body {
+  background-color: $background-color;
+}

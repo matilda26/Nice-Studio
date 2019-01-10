@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
-import './styles/App.css';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from "react-router-dom"
+import Header from './Header'
+import HomePage from './HomePage'
+import CutOut from './CutOut'
 
 class App extends Component {
   render() {
     return (
-      <>
-        <div className='background' />
-        <h1 className='title'>Nice</h1>
-      </>
+      <Router>
+        <div>
+          <Header />
+          <Route exact path='/' component={HomePage} />
+          <Route path='/cutout' component={CutOut} />
+        </div>
+      </Router>
     );
   }
 }
